@@ -6,7 +6,9 @@ use App\MyClass\Format;
 
 @section('content')
     <div class="row">
+
         <div class="col-md-8">
+            @if(count($soaHeaders))
             <div class="card">
                 <div class="card-header ">
                     <h4 class="card-title ">Statement Of Account &nbsp; </h4>
@@ -33,8 +35,8 @@ use App\MyClass\Format;
                             </td>
                             <td class="td-actions text-right">
                                 {!! Form::open(['url' => '/soa', 'method' => 'POST', 'target' => '_blank']) !!}
-                                {{ Form::hidden("soa_id", "$latestSoa->soa_id") }}
-                                {{ Form::submit('View PDF', ['class' => 'btn btn-info btn-fill pull-right']) }}
+                                    {{ Form::hidden("soa_id", "$latestSoa->soa_id") }}
+                                    {{ Form::submit('View PDF', ['class' => 'btn btn-info btn-fill pull-right']) }}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -49,7 +51,11 @@ use App\MyClass\Format;
                     </div>
                 </div>
             </div>
+            @else
+                <span class="text-danger">No available records.</span>
+            @endif
         </div>
+
 
         {{-- ACCOUNT INFO --}}
 
@@ -61,20 +67,18 @@ use App\MyClass\Format;
                 </div>
 
                 <div class="card-body all-icons" style="overflow: hidden;">
-                    <i class="nc-icon nc-single-02"></i>&nbsp;{{ Auth::user()->name }}<br>
+                    <i class="nc-icon nc-single-02"></i>&nbsp;{{ session('account_name')  }}<br>
                     <i class="nc-icon nc-email-83"></i>&nbsp;{{ Auth::user()->email }}<br>
-                    <i class="nc-icon nc-bank"></i>&nbsp;{{ Auth::user()->customers()->first()->address }}
+                    <i class="nc-icon nc-bank"></i>&nbsp;{{ session('account_address') }}
                 </div>
 
-                <div class="card-footer ">
-
-                </div>
             </div>
         </div>
     </div>
 
 
     {{-- RECENT UPLOADS --}}
+    @if(count($soaHeaders))
     <div class="row">
         <div class="col-md-6">
             <div class="card ">
@@ -109,9 +113,6 @@ use App\MyClass\Format;
                             </td>
                         </tr>
 
-                        @if($i == 5)
-                            @break
-                        @endif
                         <?php $i++; ?>
                         @endforeach
 
@@ -124,5 +125,6 @@ use App\MyClass\Format;
         </div>
 
     </div>
+    @endif
 
 @endsection

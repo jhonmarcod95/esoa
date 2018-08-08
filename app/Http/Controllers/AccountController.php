@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\SoaHeader;
+use App\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,18 +11,32 @@ class AccountController extends Controller
     public function show()
     {
         session(['header_text' => 'Accounts']);
+        $accounts = Customer::where('email', Auth::user()->email)->get();
 
-        $classifications = SoaHeader::join('customers', 'customers.customer_code', '=', 'soa_headers.customer_code')
-            ->where('customers.user_id', Auth::user()->id)
-            ->get([
-                '*',
-                'soa_headers.id AS soa_id',
-            ])
-            ->sortByDesc('cutoff_date')
-            ->groupBy('classification');
-
-        return view('account', compact(
-            'classifications'
+        return view('accounts', compact(
+            'accounts'
         ));
     }
+
+    public function switchAccount(){
+        session(['account' => '']);
+        return redirect('/');
+    }
+
+    public function setAccount(Request $request){
+        session(['account_count' =>
+            Customer::where('customer_code', $request->customer_code)
+            ->where('sap_server', $request->sap_server)
+            ->count()
+        ]);
+
+        session(['account' => $request->customer_code]);
+        session(['account_name' => $request->customer_name]);
+        session(['account_address' => $request->address]);
+        session(['sap_server' => $request->sap_server]);
+
+        return redirect('/dashboard');
+    }
+
+
 }

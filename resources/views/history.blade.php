@@ -3,22 +3,16 @@
 @section('content')
     <?php use App\MyClass\Format;?>
 
+    @if(count($classifications))
     <div class="row">
         <div class="col-md-12">
             <div class="card strpied-tabled-with-hover">
-                <div class="card-header ">
-                    <h4 class="card-title">List of Accounts</h4>
-                    <p class="card-category">Please click the item below to view statement history</p>
-                </div>
+
                 <div class="card-body table-responsive">
-
-
                     <div class="collapse justify-content-end" id="navigation">
                     <ul class="navbar-nav ml-auto">
-
-                            <li><a href="">Login</a></li>
-                            <li><a href="">Register</a></li>
-
+                        <li><a href="">Login</a></li>
+                        <li><a href="">Register</a></li>
                     </ul>
                     </div>
                     <table class="table table-hover table-striped">
@@ -56,8 +50,6 @@
                         @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
 
                 <div class="card-footer ">
@@ -70,6 +62,9 @@
         </div>
 
     </div>
+    @else
+        <span class="text-danger">No available records.</span>
+    @endif
 
 @endsection
 

@@ -17,17 +17,16 @@
                                     <input type="text" class="form-control" disabled="" placeholder="Company" value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
-
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-10 pr-1">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <textarea rows="4" cols="80" class="form-control" disabled>{{ Auth::user()->customers()->first()->address }}</textarea>
-                                </div>
-                            </div>
-                        </div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-10 pr-1">--}}
+                                {{--<div class="form-group">--}}
+                                    {{--<label>Address</label>--}}
+                                    {{--<textarea rows="4" cols="80" class="form-control" disabled>{{ Auth::user()->customers()->first()->address }}</textarea>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
 
                         <div class="row">
                             <div class="col-md-5 pr-1">
@@ -53,11 +52,13 @@
                                 </div>
                             </div>
                         </div>
-
+                        @include('layouts.errors')
                         {{ Form::submit('Update Profile', ['class' => 'btn btn-info btn-fill pull-right']) }}
-                        <div class="clearfix"></div>
                     {!! Form::close() !!}
                 </div>
+
+
+
             </div>
         </div>
     </div>

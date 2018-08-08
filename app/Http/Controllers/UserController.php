@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function show()
     {
-        session(['header_text' => 'User Account']);
+        session(['header_text' => 'User Profile']);
 
         return view('userprofile');
     }

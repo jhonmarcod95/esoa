@@ -18,15 +18,15 @@
 
                         <a class="nav-link" href="{{ url('/') }}" id="navbarDropdownMenuLink"
                            aria-haspopup="true" aria-expanded="false">
+                            <i class="nc-icon nc-single-02"></i>&nbsp;
                             <span class="no-icon">{{ Auth::user()->name }}</span>
                         </a>
                         <a class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{ route('logout') }}" >
-                            <span class="no-icon " >Logout</span>
+                            <span class="no-icon " >LOGOUT</span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
-
 
                     </li>
                 @endguest

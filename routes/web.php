@@ -13,30 +13,39 @@
 
 Auth::routes();
 
-
-
+//create middleware here if customer code is not existing or related to email address will force logout
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/home', 'HomeController@index')->name('home');
-
-    Route::get('/account', 'AccountController@show');
-
+    #logs page use by admin user
     Route::get('/log', 'LogController@show');
 
-    Route::get('/statement/{classification}/{code}/{server}', 'StatementController@show');
+    #account page
+    Route::group(['middleware' => 'account.out'], function () {
+        Route::get('/', 'AccountController@show')->name('home');
+        Route::get('/home', 'AccountController@show')->name('home');
 
-    Route::get('/soa/compute/{id}','SoaController@compute');
-    Route::post('/soa', 'SoaController@show');
+        Route::post('/account', 'AccountController@setAccount');
+    });
 
+    #user profile
     Route::get('/userprofile', 'UserController@show');
     Route::post('/userprofile/update', 'UserController@update');
+
+    #allowed links to access upon account selection
+    Route::group(['middleware' => 'account.in'], function () {
+
+        Route::get('/dashboard', 'HomeController@index');
+
+        Route::get('/history', 'StatementHistoryController@show');
+
+        Route::get('/account/switch', 'AccountController@switchAccount');
+
+        Route::get('/statement/{classification}/{code}/{server}', 'StatementController@show');
+
+        Route::get('/soa/compute/{id}','SoaController@compute');
+        Route::post('/soa', 'SoaController@show');
+    });
+
 });
 
-//Route::get('send_test_email', function(){
-//    Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-//    {
-//        $message->to('jhonmarcod95@gmail.com');
-//    });
-//});

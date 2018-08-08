@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\SoaHeader;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -36,13 +37,14 @@ class HomeController extends Controller
         session(['copyright' => $cp]);
         #-------------------------
 
-
         if(Auth::user()->isUser()){
 
             session(['header_text' => 'Dashboard']);
 
             $soaHeaders = SoaHeader::join('customers', 'customers.customer_code', '=', 'soa_headers.customer_code')
-                ->where('customers.user_id', Auth::user()->id)
+                ->where('soa_headers.customer_code', session('account'))
+                ->where('soa_headers.sap_server', session('sap_server'))
+                ->where('customers.email', Auth::user()->email)
                 ->get([
                     '*',
                     'soa_headers.id AS soa_id',
@@ -51,22 +53,22 @@ class HomeController extends Controller
                 ->take(5);
 
 
-            $latestSoa = $soaHeaders->first();
-            $latestSoaAmount = (object) SoaHeader::getStatementAmount($latestSoa);
-            $sendMessage = Carbon::parse($latestSoa->cutoff_date)->diffForHumans();
+            if(count($soaHeaders)){
+                $latestSoa = $soaHeaders->first();
+                $latestSoaAmount = (object) SoaHeader::getStatementAmount($latestSoa);
+                $sendMessage = Carbon::parse($latestSoa->cutoff_date)->diffForHumans();
+            }
 
             return view('home', compact(
                 'soaHeaders',
                 'latestSoa',
                 'latestSoaAmount',
                 'sendMessage'
-
             ));
         }
         else{
             return redirect('/log');
         }
-
-
     }
+
 }

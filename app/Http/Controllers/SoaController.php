@@ -25,14 +25,12 @@ class SoaController extends Controller
 
         $soa_id = $request->soa_id;
 
-        $soa_header = SoaHeader::join('sap_server', 'soa_headers.sap_server', '=', 'sap_server.code')
+        $soa_header = SoaHeader::join('sap_server', 'soa_headers.sap_server', '=', 'sap_server.id')
             ->where('soa_headers.id', $soa_id)
             ->get()
             ->first();
 
-
         $hasPtu = DB::table('ptus')->where('company', $soa_header->company_code)->count();
-
 
         $soa_details = SoaDetail::where('customer_code', $soa_header->customer_code)
             ->where('company_code', $soa_header->company_code)
