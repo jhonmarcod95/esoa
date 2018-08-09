@@ -32,6 +32,7 @@ Tip 2: you can also add an image using data-image tag
             @endif
             @endrole
 
+            @role('user')
             @if(!session('account'))
             <li>
                 <a class="nav-link" href="{{ url('/') }}">
@@ -40,14 +41,7 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
             @endif
-
-            <li>
-                <a class="nav-link" href="{{ url('/userprofile') }}">
-                    <i class="nc-icon nc-circle-09"></i>
-                    <p>User Profile</p>
-                </a>
-            </li>
-
+            @endrole
 
             @role('admin')
             <li>
@@ -58,6 +52,12 @@ Tip 2: you can also add an image using data-image tag
             </li>
             @endrole
 
+            <li>
+                <a class="nav-link" href="{{ url('/userprofile') }}">
+                    <i class="nc-icon nc-circle-09"></i>
+                    <p>User Profile</p>
+                </a>
+            </li>
 
             <li class="nav-item active active-pro">
                 @if(session('account'))

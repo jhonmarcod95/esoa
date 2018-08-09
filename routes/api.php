@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/generateHash', ['middleware' => 'auth:api', 'uses' => 'Api\UserController@generateHash']);
+// Route::post('/generateHash', ['middleware' => 'auth:api', 'uses' => 'Api\UserController@generateHash']);

@@ -10,12 +10,17 @@ class AccountController extends Controller
 {
     public function show()
     {
-        session(['header_text' => 'Accounts']);
-        $accounts = Customer::where('email', Auth::user()->email)->get();
+        if(Auth::user()->isUser()){
+            session(['header_text' => 'Accounts']);
+            $accounts = Customer::where('email', Auth::user()->email)->get();
 
-        return view('accounts', compact(
-            'accounts'
-        ));
+            return view('accounts', compact(
+                'accounts'
+            ));
+        }
+        else{
+            return redirect('/log');
+        }
     }
 
     public function switchAccount(){
