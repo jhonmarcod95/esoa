@@ -97,7 +97,7 @@
                     12/28/2017 <br>
                     RANGE OF SERIAL NUMBER FROM FL10 000000001 - 999999999 <br>
                     THIS IS A SYSTEM GENERATED STATEMENT OF ACCOUNT  <br>
-                    "THIS DOCUMENT IS NOT VALID FOR CLAIM OF INPUT TAX"
+                    "THIS DOCUMENT IS NOT VALID FOR CLAIM OF INPUT TAXES"
                 @endif
             </td>
         </tr>
