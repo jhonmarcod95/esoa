@@ -18,14 +18,27 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $customer_name = $request->customer_name;
         $password =$request->password;
 
-        $validatedData = $request->validate([
-            'password' => ['required','string','min:6','confirmed'],
+        $request->validate([
+            'customer_name' => 'required',
         ]);
 
         $user = User::find(Auth::user()->id);
-        $user->password = bcrypt($password);
+        $user->name = strtoupper($customer_name);
+
+        #------------------ validates if user inputs a password ----------------------------
+        if(!empty($password)){
+            $request->validate([
+                'password' => ['required','string','min:6','confirmed'],
+            ]);
+
+            $user->password = bcrypt($password);
+        }
+        #-----------------------------------------------------------------------------------
+
+
         $user->save();
 
 

@@ -12,7 +12,8 @@ class AccountController extends Controller
     {
         if(Auth::user()->isUser()){
             session(['header_text' => 'Accounts']);
-            $accounts = Customer::where('email', Auth::user()->email)->get();
+            $accounts = Customer::where('email', Auth::user()->email)
+                ->get();
 
             return view('accounts', compact(
                 'accounts'

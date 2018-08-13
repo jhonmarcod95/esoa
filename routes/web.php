@@ -14,6 +14,7 @@
 Auth::routes();
 
 //create middleware here if customer code is not existing or related to email address will force logout
+//middleware also for soa id that is not belongs to customer
 
 Route::group(['middleware' => 'auth'], function () {
 

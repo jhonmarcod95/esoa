@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Edit Account</h4>
+                    <h4 class="card-title">Update Profile</h4>
                 </div>
                 <div class="card-body">
                     {!! Form::open(['url' => '/userprofile/update', 'method' => 'POST']) !!}
@@ -14,7 +14,7 @@
                             <div class="col-md-10 pr-1">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" disabled="" placeholder="Company" value="{{ Auth::user()->name }}">
+                                    <input name="customer_name" style="text-transform: uppercase" type="text" class="form-control" placeholder="Customer Name" value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
                         </div>
@@ -42,13 +42,13 @@
                             <div class="col-md-5 pr-1">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Password</label>
-                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <input id="password" type="password" class="form-control" name="password">
                                 </div>
                             </div>
                             <div class="col-md-5 pr-1">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Confirm Password:</label>
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                                 </div>
                             </div>
                         </div>
