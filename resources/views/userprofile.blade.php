@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     {!! Form::open(['url' => '/userprofile/update', 'method' => 'POST']) !!}
-                        @role('user')
+
                         <div class="row">
                             <div class="col-md-10 pr-1">
                                 <div class="form-group">
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        @endrole
+
 
                         <div class="row">
                             <div class="col-md-5 pr-1">
