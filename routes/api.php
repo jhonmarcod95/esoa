@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('/saveHeaders', 'Api\SoaController@saveHeaders');
+    Route::post('/saveSoa', 'Api\SoaController@saveSoa');
 });
 
 // Route::post('/generateHash', ['middleware' => 'auth:api', 'uses' => 'Api\UserController@generateHash']);
