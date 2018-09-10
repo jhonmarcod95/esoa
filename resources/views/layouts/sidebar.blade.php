@@ -50,6 +50,14 @@ Tip 2: you can also add an image using data-image tag
                     <p>Logs</p>
                 </a>
             </li>
+
+            <li>
+                <a class="nav-link" href="{{ url('/users') }}">
+                    <i class="nc-icon nc-circle-09"></i>
+                    <p>User Master</p>
+                </a>
+            </li>
+
             @endrole
 
             <li>
@@ -60,6 +68,11 @@ Tip 2: you can also add an image using data-image tag
             </li>
 
             <li class="nav-item active active-pro">
+                <a class="nav-link active" href="{{ asset('manuals/how_tos.pdf') }}" target="_blank">
+                    <i class="nc-icon"></i>
+                    <p>User's Manual</p>
+                </a>
+
                 @if(session('account'))
                 <a class="nav-link" href="{{ url('/account/switch') }}">
                     <p>Switch Account</p>
@@ -71,6 +84,7 @@ Tip 2: you can also add an image using data-image tag
                     <p>About Us</p>
                 </a>
             </li>
+
 
 
         </ul>

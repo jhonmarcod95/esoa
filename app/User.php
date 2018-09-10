@@ -36,4 +36,5 @@ class User extends Authenticatable implements Auditable
     {
         return $this->hasMany(Customer::class);
     }
+
 }

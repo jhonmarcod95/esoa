@@ -38,6 +38,15 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/dashboard', 'HomeController@index');
 
+        Route::get('/users', 'UserController@users');
+        Route::get('/users/add', 'UserController@add');
+        Route::get('/users/edit/{id}', 'UserController@edit');
+
+        Route::post('/users/save', 'UserController@save');
+        Route::post('/users/accounts/save', 'UserController@saveAccount');
+        Route::post('/users/accounts/update', 'UserController@updateAccount');
+        Route::post('/users/accounts/delete/{id}', 'UserController@deleteAccount');
+
         Route::get('/history', 'StatementHistoryController@show');
 
         Route::get('/account/switch', 'AccountController@switchAccount');

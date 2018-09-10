@@ -41,6 +41,8 @@ class HomeController extends Controller
 
             session(['header_text' => 'Dashboard']);
 
+            $soaHeaders = SoaHeader::where('customer_code', session('account'))->get();
+
             $soaHeaders = SoaHeader::join('customers', 'customers.customer_code', '=', 'soa_headers.customer_code')
                 ->where('soa_headers.customer_code', session('account'))
                 ->where('soa_headers.sap_server', session('sap_server'))
