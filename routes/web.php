@@ -20,6 +20,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     #logs page use by admin user
     Route::get('/log', 'LogController@show');
+    Route::get('/log-history', 'LogController@log_history');
+
 
     #account page
     Route::group(['middleware' => 'account.out'], function () {

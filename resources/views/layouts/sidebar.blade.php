@@ -67,6 +67,12 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
+            <li>
+                <a class="nav-link" href="{{ url('/log-history') }}">
+                    <i class="nc-icon nc-circle-09"></i>
+                    <p>Log History</p>
+                </a>
+            </li>
             <li class="nav-item active active-pro">
                 <a class="nav-link active" href="{{ asset('manuals/how_tos.pdf') }}" target="_blank">
                     <i class="nc-icon"></i>
