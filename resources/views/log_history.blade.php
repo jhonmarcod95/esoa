@@ -6,8 +6,8 @@
     <div class="col-md-12">
         <div class="card strpied-tabled-with-hover">
             <div class="card-header ">
-                <h4 class="card-title">List of Logs</h4>
-                <p class="card-category">Tabular view of user's logs</p>
+                <h4 class="card-title">Logs History</h4>
+                <p class="card-category">Tabular view of Log's History</p>
             </div>
             
             
@@ -35,40 +35,49 @@
                     </div>
                 </form>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-14">
                         <div class="table table-responsive">
-                            <table  class="table table-hover table-striped" style="white-space: nowrap;width:1%;">
+                            <table  class="table table-hover table-bordered" style="white-space: nowrap;width:1%;">
                                 <thead>
                                     <tr>
-                                        <th>User</th>
-                                        @foreach($dates as $date)
-                                        <th>{{ $date}}</th>
+                                        <td></td>
+                                        <td>User</td>
+                                        @if($dateformats!=Null)
+                                        @foreach($dateformats as $dateformat)
+                                        <td >{{ $dateformat }}</td>
                                         @endforeach
+                                        @endif
                                         
                                     </tr>
                                 </thead>
                                 <tbody>
                                     
                                     
-                                    @foreach($user_id as $id)
-                                    <tr>     
+                                    @foreach($user_id as $key=> $id)
+                                    <tr>  
                                         <td>
-                                            {{ $id->name}}<br>
-                                            <small>{{ $id->email}}</small>
+                                            {{$key+1}}
                                         </td>
-                                        @foreach($dates as $date)
-                                        <td>
-                                            @foreach($logs as $log)
+                                        <td class="w-100 p-3">
+                                            {{$id->name}}
+                                            <br>
+                                            <small>{{$id->email}}</small>
                                             
+                                        </td>
+                                        @if($dates!=Null)
+                                        @foreach($dates as $keya => $date)
+                                        <td  class="w-100 p-3">
+                                          
+                                            @foreach($logs as $log)
                                             @if(($log->user_id==$id->id)&&($log->created_at->format('Y-m-d')==$date))
-                                            {{" ".$log->event." ".$log->created_at->format('h:i:s')." "}}
+                                            {{$log->event." at ".$log->created_at->format('h:m a')}}
                                             <br>
                                             @endif
-                                            
                                             @endforeach
+                                            
                                         </td>
                                         @endforeach
-                                        
+                                        @endif
                                     </tr>
                                     @endforeach
                                     

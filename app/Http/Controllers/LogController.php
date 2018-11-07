@@ -58,16 +58,16 @@ class LogController extends Controller
         
         public function log_history (Request $request){
             
-            session(['header_text' => 'User Logs']);
+            session(['header_text' => 'Log History']);
             
             $dateFrom = $request->dateFrom;
             $dateTo = $request->dateTo;
-          
             
             
-          
+            
+            
             $user_id = User::orderBy('name','asc')->get(['id','name','email']);
-       
+            
             $userLogsa = Logs::join('users', 'logs.user_id', '=', 'users.id')
             ->whereBetween('logs.created_at', [$dateFrom, $dateTo])
             ->get([
@@ -78,6 +78,8 @@ class LogController extends Controller
                 ]);
                 
                 $logs = [];
+        
+                
                 foreach ($userLogsa as $log){
                     $events = collect( json_decode($log->event));
                     $soa_id = "";
@@ -100,23 +102,31 @@ class LogController extends Controller
                     ];
                     
                 }
-
+                
                 $logs = collect($logs);
-               
-
-                while (strtotime($dateFrom) <= strtotime($dateTo)) {
-                    $dates[]=$dateFrom;
-                    $dateFrom = date ("Y-m-d", strtotime("+1 day", strtotime($dateFrom)));
+                
+                if($dateFrom!=null){
+                    while (strtotime($dateFrom) <= strtotime($dateTo)) {
+                        $dates[]=$dateFrom;
+                        $dateformat[]= date(('M j, Y'),strtotime($dateFrom));
+                        $dateFrom = date ("Y-m-d", strtotime("+1 day", strtotime($dateFrom)));
+                        
+                    }
                 }
-
-
-           
-            
-            
-             return view('log_history', array
-             (
+                else
+                {
+                    $dateformat = [];
+                    $dates = [];
+                    
+                }
+                
+                
+                
+                return view('log_history', array
+                (
                     'logs' => $logs,
                     'dates' => $dates,
+                    'dateformats' => $dateformat,
                     'user_id' => $user_id,
                 )); 
                 

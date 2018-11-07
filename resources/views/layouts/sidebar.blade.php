@@ -69,7 +69,7 @@ Tip 2: you can also add an image using data-image tag
 
             <li>
                 <a class="nav-link" href="{{ url('/log-history') }}">
-                    <i class="nc-icon nc-circle-09"></i>
+                    <i class="nc-icon nc-watch-time"></i>
                     <p>Log History</p>
                 </a>
             </li>
