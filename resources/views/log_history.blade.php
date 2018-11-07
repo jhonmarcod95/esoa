@@ -66,12 +66,13 @@
                                         </td>
                                         @if($dates!=Null)
                                         @foreach($dates as $keya => $date)
-                                        <td  class="w-100 p-3">
-                                          
+                                        <td  class="w-100 h-100 p-3">
                                             @foreach($logs as $log)
                                             @if(($log->user_id==$id->id)&&($log->created_at->format('Y-m-d')==$date))
                                             {{$log->event." at ".$log->created_at->format('h:m a')}}
                                             <br>
+                                            @else
+                                            
                                             @endif
                                             @endforeach
                                             

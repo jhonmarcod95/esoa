@@ -58,7 +58,7 @@ class LogController extends Controller
         
         public function log_history (Request $request){
             
-            session(['header_text' => 'Log History']);
+            session(['header_text' => 'Log Details']);
             
             $dateFrom = $request->dateFrom;
             $dateTo = $request->dateTo;
