@@ -50,7 +50,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table table-responsive">
-                                <table id="table-logs" class="table table-bordered" style="white-space: nowrap;">
+                                <table id="dataTbl" class="table table-bordered" style="white-space: nowrap;">
                                     <thead>
                                     <tr>
                                         <td></td>
