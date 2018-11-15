@@ -71,8 +71,8 @@ Tip 2: you can also add an image using data-image tag
             @role('admin|viewer')
             <li>
                 <a class="nav-link" href="{{ url('/log-history') }}">
-                    <i class="nc-icon nc-watch-time"></i>
-                    <p>Log History</p>
+                    <i class="nc-icon nc-chart-bar-32"></i>
+                    <p>Log Report</p>
                 </a>
             </li>
             @endrole
