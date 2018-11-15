@@ -26,6 +26,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
+
 {{--<script src="https://unpkg.com/vue@latest"></script>--}}
 {{--<!-- use the latest release -->--}}
 {{--<script src="https://unpkg.com/vue-select@latest"></script>--}}

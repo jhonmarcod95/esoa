@@ -67,7 +67,7 @@ Tip 2: you can also add an image using data-image tag
                 </a>
             </li>
 
-            @role('admin')
+            @role('admin|viewer')
             <li>
                 <a class="nav-link" href="{{ url('/log-history') }}">
                     <i class="nc-icon nc-watch-time"></i>

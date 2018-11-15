@@ -48,33 +48,28 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $('#dataTbl').DataTable({
+            dom: 'Bfrtip',
             "paginate" : false,
-            "sort" : false
+            "sort" : false,
+            buttons: [
+                'excelHtml5',
+                'csvHtml5'
+
+            ]
         });
     } );
-
-    /* export to excel function **********************************/
-    var tableToExcel = (function() {
-        var uri = 'data:application/vnd.ms-excel;base64,'
-            , template =
-            '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">' +
-            '<head></head>' +
-            '<body>' +
-            '<table border=\'1\'>{table}</table>' +
-            '</body>' +
-            '</html>'
-            , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
-            , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
-        return function(table, name) {
-            if (!table.nodeType) table = document.getElementById(table)
-            var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
-            window.location.href = uri + base64(format(template, ctx))
-
-        }
-    })()
-    /*************************************************************/
 </script>
+
+
 </html>

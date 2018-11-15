@@ -7,6 +7,7 @@ use App\MyClass\Format;
 use Carbon\Carbon;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class LogController extends Controller
@@ -62,19 +63,15 @@ class LogController extends Controller
             
             $dateFrom = $request->dateFrom;
             $dateTo = $request->dateTo;
-            
-            
-            
-            
+
             $user_id = User::orderBy('name','asc')->get(['id','name','email']);
-            
             $userLogsa = Logs::join('users', 'logs.user_id', '=', 'users.id')
-            ->whereBetween('logs.created_at', [$dateFrom, $dateTo])
+            ->whereBetween(DB::raw('DATE(logs.created_at)'), [$dateFrom, $dateTo])
             ->get([
-                'user_id',
-                'name',
-                'event',
-                'logs.created_at'
+                    'user_id',
+                    'name',
+                    'event',
+                    'logs.created_at'
                 ]);
                 
                 $logs = [];
@@ -119,8 +116,7 @@ class LogController extends Controller
                     $dates = [];
                     
                 }
-                
-                
+
                 
                 return view('log_history', array
                 (
