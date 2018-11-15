@@ -43,21 +43,22 @@ Tip 2: you can also add an image using data-image tag
             @endif
             @endrole
 
-            @role('admin')
+            @role('admin|viewer')
             <li>
                 <a class="nav-link" href="{{ url('/log') }}">
                     <i class="nc-icon nc-watch-time"></i>
                     <p>Logs</p>
                 </a>
             </li>
+            @endrole
 
+            @role('admin')
             <li>
                 <a class="nav-link" href="{{ url('/users') }}">
                     <i class="nc-icon nc-circle-09"></i>
                     <p>User Master</p>
                 </a>
             </li>
-
             @endrole
 
             <li>
