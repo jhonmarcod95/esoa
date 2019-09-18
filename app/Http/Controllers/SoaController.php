@@ -38,7 +38,7 @@ class SoaController extends Controller
             ->where('classification', $soa_header->classification)
             ->get();
 
-
+        $company_code = $soa_header->company_code;
 
         $pdf = PDF::loadView('soa', compact(
             'soa_header',

@@ -19,9 +19,11 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
     #logs page use by admin user
-    Route::get('/log', 'LogController@show');
-    Route::get('/log-history', 'LogController@log_history');
-
+    Route::group(['middleware' => ['auth', 'role:admin']], function () {
+        Route::get('/log', 'LogController@show');
+        Route::get('/log-history', 'LogController@log_history');
+        Route::get('/soa-master', 'SoaMasterController@index');
+    });
 
     #account page
     Route::group(['middleware' => 'account.out'], function () {
@@ -30,10 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::post('/account', 'AccountController@setAccount');
     });
-
-    #user profile
-    Route::get('/userprofile', 'UserController@show');
-    Route::post('/userprofile/update', 'UserController@update');
 
     #allowed links to access upon account selection
     Route::group(['middleware' => 'account.in'], function () {
@@ -59,5 +57,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/soa', 'SoaController@show');
     });
 
+
+
+
+    #user profile
+    Route::get('/userprofile', 'UserController@show');
+    Route::post('/userprofile/update', 'UserController@update');
 });
 

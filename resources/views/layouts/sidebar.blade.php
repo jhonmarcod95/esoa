@@ -59,14 +59,14 @@ Tip 2: you can also add an image using data-image tag
                     <p>User Master</p>
                 </a>
             </li>
-            @endrole
 
             <li>
-                <a class="nav-link" href="{{ url('/userprofile') }}">
-                    <i class="nc-icon nc-circle-09"></i>
-                    <p>User Profile</p>
+                <a class="nav-link" href="{{ url('/soa-master') }}">
+                    <i class="nc-icon nc-app"></i>
+                    <p>Soa Master</p>
                 </a>
             </li>
+            @endrole
 
             @role('admin|viewer')
             <li>

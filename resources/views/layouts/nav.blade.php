@@ -16,7 +16,7 @@
                 @else
                     <li class="nav-item dropdown">
 
-                        <a class="nav-link" href="{{ url('/') }}" id="navbarDropdownMenuLink"
+                        <a class="nav-link" href="{{ url('/userprofile') }}" id="navbarDropdownMenuLink"
                            aria-haspopup="true" aria-expanded="false">
                             <i class="nc-icon nc-single-02"></i>&nbsp;
                             <span class="no-icon">{{ Auth::user()->name }}</span>

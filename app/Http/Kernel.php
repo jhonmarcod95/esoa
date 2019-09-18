@@ -59,5 +59,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'account.in' => \App\Http\Middleware\Account::class,
         'account.out' => \App\Http\Middleware\AccountOut::class,
+        'role'          => \jeremykenedy\LaravelRoles\Middleware\VerifyRole::class,
+        'permission'    => \jeremykenedy\LaravelRoles\Middleware\VerifyPermission::class,
+        'level'         => \jeremykenedy\LaravelRoles\Middleware\VerifyLevel::class,
     ];
 }
