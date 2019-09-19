@@ -30,7 +30,7 @@ class SoaController extends Controller
             ->get()
             ->first();
 
-        $hasPtu = DB::table('ptus')->where('company', $soa_header->company_code)->count();
+        $hasPtu = DB::table('ptus')->where('company', $soa_header->company_code)->get();
 
         $soa_details = SoaDetail::where('customer_code', $soa_header->customer_code)
             ->where('company_code', $soa_header->company_code)

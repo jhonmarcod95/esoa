@@ -93,11 +93,7 @@
             <td style="width: 50%; text-align: left;"></td>
             <td style="width: 50%; padding-left: 2cm">
                 @if($hasPtu)
-                    PTU NO.: 1712_0123_PTU_CAS_000250 ; DATE OF ISSUE - <br>
-                    12/28/2017 <br>
-                    RANGE OF SERIAL NUMBER FROM FL10 000000001 - 999999999 <br>
-                    THIS IS A SYSTEM GENERATED STATEMENT OF ACCOUNT  <br>
-                    "THIS DOCUMENT IS NOT VALID FOR CLAIM OF INPUT TAX"
+                    {{ $hasPtu[0]->text }}
                 @endif
             </td>
         </tr>
