@@ -19,7 +19,7 @@ class SoaController extends Controller
      */
     public function show(Request $request)
     {
-        $validation = $request->validate([
+        $request->validate([
             'soa_id' => 'required',
         ]);
 
